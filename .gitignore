@@ -1,0 +1,15 @@
+.*/
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+*.class
+*.log
+target/
+.gradle/
+build/
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
