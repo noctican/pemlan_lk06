@@ -1,5 +1,5 @@
-package interfaces;
-import entities.BaseEntity;
+package src.interfaces;
+import src.entities.BaseEntity;
 import java.util.Scanner;
 
 
