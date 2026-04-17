@@ -1,6 +1,6 @@
 package src.entities;
-import exceptions.DataNotFoundException;
-import exceptions.DuplicateDataException;
+import src.exceptions.DataNotFoundException;
+import src.exceptions.DuplicateDataException;
 import java.io.*;
 import java.util.*;
 import java.util.function.Supplier;
