@@ -1,4 +1,4 @@
-package entities;
+package src.entities;
 import java.time.LocalDate;
 
 public class Transaction extends BaseEntity {

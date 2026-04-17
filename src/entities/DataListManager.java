@@ -1,4 +1,4 @@
-package entities;
+package src.entities;
 import exceptions.DataNotFoundException;
 import exceptions.DuplicateDataException;
 import java.io.*;
