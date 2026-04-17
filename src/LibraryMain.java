@@ -240,6 +240,10 @@ public class LibraryMain {
         } else if (choice.equals("2")) {
             System.out.print("Kode Transaksi: "); String txId = scanner.nextLine();
             Transaction tx = transactionMgr.getSingle(txId);
+            if (tx == null) {
+                System.out.println("Transaksi tidak ditemukan.");
+                return;
+            }
             try {
                 tx.kembalikanBuku();
                 transactionMgr.update(tx);
