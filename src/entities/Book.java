@@ -1,6 +1,7 @@
 package src.entities;
 
 public class Book extends BaseEntity {
+    // Atribut
     private String kode, judul, jenis;
 
     // Empty constructor sebagai pancingan awal saat DataListManager membaca file txt.

@@ -12,6 +12,7 @@ public class Employee extends BaseEntity {
         this.passwordHash = isHash ? passwordHash : hashPassword(passwordHash);
     }
 
+    // Getter
     public String getId() { return nip; }
     public String getNama() { return nama; }
     public String getTanggalLahir() { return tanggalLahir; }

@@ -1,8 +1,10 @@
 package src.entities;
 
 public class Student extends BaseEntity {
+    // Atribut
     private String nis, nama, alamat;
 
+    // Constructor
     public Student() {}
     public Student(String nis, String nama, String alamat) {
         this.nis = nis;
@@ -10,7 +12,8 @@ public class Student extends BaseEntity {
         this.alamat = alamat;
     }
 
-    public String getNis() { return nis;}
+    // Getter
+    public String getId() { return nis;}
     public String getNama() { return nama;}
     public String getAlamat() { return alamat;}
 

@@ -7,10 +7,12 @@ import java.util.function.Supplier;
 
 
 public class DataListManager<T extends BaseEntity> {
+    // Atribut
     private List<T> list;
     private String filePath;
     private Supplier<T> factory;
 
+    // Constructor
     public DataListManager(String filePath, Supplier<T> factory) {
         this.filePath = filePath;
         this.factory = factory;
@@ -18,12 +20,14 @@ public class DataListManager<T extends BaseEntity> {
         loadData();
     }
 
+    // Getter
     public List<T> getAll() { return list; }
 
     public T getSingle(String id) {
         return list.stream().filter(item -> item.getId().equals(id)).findFirst().orElse(null);
     }
 
+    // Method
     public void create(T item) throws DuplicateDataException {
         if (getSingle(item.getId()) != null) {
             throw new DuplicateDataException("Gagal: Data dengan ID " + item.getId() + " sudah terdaftar!");
