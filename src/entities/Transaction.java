@@ -9,6 +9,10 @@ public class Transaction extends BaseEntity {
 
     // Cosntructor
     public Transaction() {}
+    public Transaction(String kodeTransaksi, String nis, String kodeBuku, LocalDate tglPinjam) {
+        this.kodeTransaksi = kodeTransaksi; this.nis = nis; this.kodeBuku = kodeBuku;
+        this.tglPinjam = tglPinjam; this.tglKembali = null; this.status = 0;
+    }
 
     // Getter
     public String getId() {return kodeTransaksi;}
