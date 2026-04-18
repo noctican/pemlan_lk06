@@ -12,7 +12,29 @@ public class Transaction extends BaseEntity {
 
     // Getter
     public String getId() {return kodeTransaksi;}
+    public String getNis() { return nis; }
+    public String getKodeBuku() { return kodeBuku; }
+    public int getStatus() { return status; }
+    public LocalDate getTglPinjam() { return tglPinjam; }
 
     // Method
-    public String toDataString() { return kodeTransaksi + DELIMITER + nis + DELIMITER + kodeBuku + DELIMITER + tglPinjam;}
+    public void kembalikanBuku() {
+        this.status = 1;
+        this.tglKembali = LocalDate.now();
+    }
+
+    public String toDataString() {
+        String tglKembaliStr = (tglKembali == null) ? "null" : tglKembali.toString();
+        return kodeTransaksi + DELIMITER + nis + DELIMITER + kodeBuku + DELIMITER + tglPinjam.toString() + DELIMITER + tglKembaliStr + DELIMITER + status;
+    }
+
+    public void fromDataString(String data) {
+        String[] parts = data.split(DELIMITER);
+        if (parts.length >= 6) {
+            kodeTransaksi = parts[0]; nis = parts[1]; kodeBuku = parts[2];
+            tglPinjam = LocalDate.parse(parts[3]);
+            tglKembali = parts[4].equals("null") ? null : LocalDate.parse(parts[4]);
+            status = Integer.parseInt(parts[5]);
+        }
+    }
 }
