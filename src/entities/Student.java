@@ -13,11 +13,13 @@ public class Student extends BaseEntity {
     }
 
     // Getter
+    @Override
     public String getId() { return nis;}
     public String getNama() { return nama;}
     public String getAlamat() { return alamat;}
-
+    @Override
     public String toDataString() { return nis + DELIMITER + nama + DELIMITER + alamat;}
+    @Override  
     public void fromDataString(String data) {
         String[] parts = data.split(DELIMITER);
         this.nis = parts[0];

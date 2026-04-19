@@ -156,12 +156,14 @@ public class LibraryMain {
 
     private static DataFormHandler<Student> getStudentFormHandler() {
         return new DataFormHandler<Student>() {
+            @Override
             public Student createInput(Scanner sc) {
                 System.out.print("NIS: "); String id = sc.nextLine();
                 System.out.print("Nama: "); String nama = sc.nextLine();
                 System.out.print("Alamat: "); String alamat = sc.nextLine();
                 return new Student(id, nama, alamat);
             }
+            @Override
             public Student updateInput(Scanner sc, Student ex) {
                 System.out.print("Nama [" + ex.getNama() + "]: "); String nama = sc.nextLine();
                 System.out.print("Alamat [" + ex.getAlamat() + "]: "); String alamat = sc.nextLine();
@@ -171,6 +173,7 @@ public class LibraryMain {
                     alamat.isEmpty() ? ex.getAlamat() : alamat
                 );
             }
+            @Override
             public void displayItem(Student item) {
                 System.out.printf("NIS: %s | Nama: %-15s | Alamat: %s\n", item.getId(), item.getNama(), item.getAlamat());
             }
@@ -179,12 +182,14 @@ public class LibraryMain {
 
     private static DataFormHandler<Book> getBookFormHandler() {
         return new DataFormHandler<Book>() {
+            @Override
             public Book createInput(Scanner sc) {
                 System.out.print("Kode Buku: "); String id = sc.nextLine();
                 System.out.print("Judul: "); String judul = sc.nextLine();
                 System.out.print("Jenis Buku: "); String jenis = sc.nextLine();
                 return new Book(id, judul, jenis);
             }
+            @Override
             public Book updateInput(Scanner sc, Book ex) {
                 System.out.print("Judul [" + ex.getJudul() + "]: "); String judul = sc.nextLine();
                 System.out.print("Jenis Buku [" + ex.getJenis() + "]: "); String jenis = sc.nextLine();
@@ -194,6 +199,7 @@ public class LibraryMain {
                     jenis.isEmpty() ? ex.getJenis() : jenis
                 );
             }
+            @Override
             public void displayItem(Book item) {
                 System.out.printf("Kode: %s | Judul: %-20s | Jenis: %s\n", item.getId(), item.getJudul(), item.getJenis());
             }
@@ -202,6 +208,7 @@ public class LibraryMain {
 
     private static DataFormHandler<Employee> getEmployeeFormHandler() {
         return new DataFormHandler<Employee>() {
+            @Override
             public Employee createInput(Scanner sc) {
                 System.out.print("NIP: "); String id = sc.nextLine();
                 System.out.print("Nama: "); String nama = sc.nextLine();
@@ -209,6 +216,7 @@ public class LibraryMain {
                 System.out.print("Password: "); String pass = sc.nextLine();
                 return new Employee(id, nama, tgl, pass, false); // false artinya perlu di-hash
             }
+            @Override
             public Employee updateInput(Scanner sc, Employee ex) {
                 System.out.print("Nama [" + ex.getNama() + "]: "); String nama = sc.nextLine();
                 System.out.print("Tgl Lahir [" + ex.getTanggalLahir() + "]: "); String tgl = sc.nextLine();
@@ -223,6 +231,7 @@ public class LibraryMain {
                     isPassKosong // Jika kosong, gunakan hash lama (true). Jika isi baru, hash lagi (false).
                 );
             }
+            @Override
             public void displayItem(Employee item) {
                 System.out.printf("NIP: %s | Nama: %-15s | Tgl Lahir: %s\n", item.getId(), item.getNama(), item.getTanggalLahir());
             }
