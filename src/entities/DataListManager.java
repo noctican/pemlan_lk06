@@ -82,9 +82,13 @@ public class DataListManager<T extends BaseEntity> {
             if (!dir.exists()) dir.mkdirs();
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-                for (T item : list) {
-                    bw.write(item.toDataString());
-                    bw.newLine();
+                int size = this.list.size();
+                for(int i=0; i<size; i++){
+                    bw.write(list.get(i).toDataString());
+
+                    if(i != size-1){
+                        bw.newLine();
+                    }
                 }
             }
         } catch (IOException e) {
