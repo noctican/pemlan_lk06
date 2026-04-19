@@ -1,16 +1,16 @@
 package src.entities;
-import src.exceptions.DataNotFoundException;
-import src.exceptions.DuplicateDataException;
 import java.io.*;
 import java.util.*;
 import java.util.function.Supplier;
+import src.exceptions.DataNotFoundException;
+import src.exceptions.DuplicateDataException;
 
 
 public class DataListManager<T extends BaseEntity> {
     // Atribut
     private List<T> list;
     private String filePath;
-    private Supplier<T> factory;
+    private Supplier<T> factory; // Supplier digunakan pada method loadData (create data dari txt)
 
     // Constructor
     public DataListManager(String filePath, Supplier<T> factory) {
@@ -19,15 +19,17 @@ public class DataListManager<T extends BaseEntity> {
         this.list = new ArrayList<>();
         loadData();
     }
-
-    // Getter
+    
+    // Method
+    // Mengembalikan semua item
     public List<T> getAll() { return list; }
 
+    // mengembalikan satu item (atau null jika tidak ditemukan) sesuai id (menggunakan filter)
     public T getSingle(String id) {
         return list.stream().filter(item -> item.getId().equals(id)).findFirst().orElse(null);
     }
 
-    // Method
+    // membuat item baru (jika id sudah ada, akan mengeluarkan exception)
     public void create(T item) throws DuplicateDataException {
         if (getSingle(item.getId()) != null) {
             throw new DuplicateDataException("Gagal: Data dengan ID " + item.getId() + " sudah terdaftar!");
@@ -36,6 +38,7 @@ public class DataListManager<T extends BaseEntity> {
         saveData();
     }
 
+    // memperbarui list item (jika id tidak ditemukan, akan mengeluarkan exception)
     public void update(T updatedItem) throws DataNotFoundException {
         boolean found = false;
         for (int i = 0; i < list.size(); i++) {
@@ -49,6 +52,7 @@ public class DataListManager<T extends BaseEntity> {
         saveData();
     }
 
+    // menghapus item (jika id tidak ditemukan, akan mengeluarkan exception)
     public void delete(String id) throws DataNotFoundException {
         T item = getSingle(id);
         if (item == null) {
@@ -59,6 +63,7 @@ public class DataListManager<T extends BaseEntity> {
         System.out.println("Data berhasil dihapus.");
     }
 
+    // mengembalikan semua item dari file txt
     private void loadData() {
         File file = new File(filePath);
         if (!file.exists()) return;
@@ -67,6 +72,7 @@ public class DataListManager<T extends BaseEntity> {
             String line;
             list.clear();
             while ((line = br.readLine()) != null) {
+                // menggunakan supplier karena tidak bisa create object dari generic [new T()]
                 T item = factory.get();
                 item.fromDataString(line);
                 list.add(item);
